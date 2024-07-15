@@ -62,6 +62,11 @@ function obtainium {
 
 echo -en "\x1b[?25l \x1b[2J \x1b[H"  # Hide cursor, clear screen.
 
+
+# Fetching video...
+tmpfile=$(mktemp)
+obtainium $video | bunzip2 -q > $tmpfile
+
 # Fetching audio...
 if has afplay; then
   # On Mac OS, if |afplay| available, pre-fetch compressed audio.
@@ -70,9 +75,6 @@ if has afplay; then
 fi
 audpid=$!
 
-# Fetching video...
-tmpfile=$(mktemp)
-obtainium $video | bunzip2 -q > $tmpfile
 
 python3 <<EOF
 import sys
@@ -101,5 +103,5 @@ try:
 except KeyboardInterrupt:
     pass
 EOF
-
 rm $tmpfile
+
