@@ -1,12 +1,14 @@
 #!/bin/zsh
 # Rick Astley in your Terminal.
 # By Serene and Justine Tunney <3
+# Modified for MacOS 14.5 by Aadarsh S
+
 version='1.2'
-rick='https://keroserene.net/lol'
+rick='https://raw.githubusercontent.com/aadarsh-shetty/rickrollrc/master'
 video="$rick/astley80.full.bz2"
 audio_raw="$rick/roll.s16"
 audpid=0
-NEVER_GONNA='curl -s -L http://bit.ly/10hA8iC | zsh'
+NEVER_GONNA='curl -# -L https://bit.ly/4cCuqBG | zsh'
 MAKE_YOU_CRY="$HOME/.zshrc"
 red='\x1b[38;5;9m'
 yell='\x1b[38;5;216m'
@@ -27,7 +29,7 @@ function quit {
 function usage {
   echo -en "${green}Rick Astley performs ♪ Never Gonna Give You Up ♪ on STDOUT."
   echo -e "  ${purp}[v$version]"
-  echo -e "${yell}Usage: ./astley.sh [OPTIONS...]"
+  echo -e "${yell}Usage: ./roll.sh [OPTIONS...]"
   echo -e "${purp}OPTIONS : ${yell}"
   echo -e " help   - Show this message."
   echo -e " inject - Append to ${purp}${USER}${yell}'s zshrc. (Recommended :D)"
@@ -52,33 +54,26 @@ done
 trap "cleanup" INT
 trap "quit" EXIT
 
-# Bean streamin' - agnostic to curl or wget availability.
+# Bean streaming
 function obtainium {
   if has curl; then curl -s $1
-  elif has wget; then wget -q -O - $1
   else echo "Cannot has internets. :(" && exit
   fi
 }
 
 echo -en "\x1b[?25l \x1b[2J \x1b[H"  # Hide cursor, clear screen.
 
-
 # Fetching video...
-tmpfile=$(mktemp)
-obtainium $video | bunzip2 -q > $tmpfile
+tmpvideofile=$(mktemp)
+tmpaudiofile=$(mktemp)
 
-# Fetching audio...
-if has afplay; then
-  # On Mac OS, if |afplay| available, pre-fetch compressed audio.
-  [ -f /tmp/roll.s16 ] || obtainium $audio_raw >/tmp/roll.s16
-  afplay /tmp/roll.s16 &
-fi
-audpid=$!
-
+obtainium $video | bunzip2 -q > $tmpvideofile
+obtainium $audio_raw > $tmpaudiofile
 
 python3 <<EOF
 import sys
 import time
+import os
 
 fps = 25
 time_per_frame = 1.0 / fps
@@ -87,7 +82,8 @@ frame = 0
 next_frame = 0
 begin = time.time()
 try:
-    with open('$tmpfile', 'r') as f:
+    os.system('afplay $tmpaudiofile &')
+    with open('$tmpvideofile', 'r') as f:
         for i, line in enumerate(f):
             if i % 32 == 0:
                 frame += 1
@@ -103,5 +99,5 @@ try:
 except KeyboardInterrupt:
     pass
 EOF
-rm $tmpfile
 
+rm $tmpvideofile,$tmpvideofile

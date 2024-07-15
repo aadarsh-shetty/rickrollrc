@@ -4,7 +4,7 @@ Special thanks to [serene](https://github.com/keroserene) and [Frank Bi](https:/
 
 Zsh script which [rickrolls](http://en.wikipedia.org/wiki/Rickrolling) your
 terminal by playing Rick Astley’s “Never Gonna Give You Up” with ANSI 256-color
-coded UTF-8 characters + audio (if available).
+coded UTF-8 characters + audio
 
 ## How to Roll
 To start rickrollin’ immediately:
@@ -30,8 +30,5 @@ execute in your terminal, inspired by the classic [Steam Locomotive](https://git
 This has been tested on MacOS Sonoma 14.5.
 
 Since this is a colorful hobby, you need to ensure 256-color mode is enabled or
-Astley will look sad.
-
-
-Kudos to jart for our lovely hiptext shenanigans. [Hiptext](https://github.com/jart/hiptext), which
+Astley will look sad. Kudos to jart for our lovely hiptext shenanigans. [Hiptext](https://github.com/jart/hiptext), which
 generates ANSI color codes for any image or video.
