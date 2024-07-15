@@ -22,20 +22,16 @@ For the record: It is not actually a good idea to make a habit of
     curl $(random_script_from_the_internets) | zsh
 
 For a salutary lesson in the importance of taking care what you
-execute in your terminal, inspired by the classic
-[Steam Locomotive](https://github.com/mtoyoda/sl) 
+execute in your terminal, inspired by the classic [Steam Locomotive](https://github.com/mtoyoda/sl)
+
 ![SL Demo](https://raw.githubusercontent.com/mtoyoda/sl/master/demo.gif)
 
 ## Misc.
-
 This has been tested on MacOS Sonoma 14.5.
 
 Since this is a colorful hobby, you need to ensure 256-color mode is enabled or
 Astley will look sad.
 
 
-Kudos to jart for our lovely hiptext shenanigans.
-Please see our sister project: [hiptext](https://github.com/jart/hiptext), which
+Kudos to jart for our lovely hiptext shenanigans. [Hiptext](https://github.com/jart/hiptext), which
 generates ANSI color codes for any image or video.
-
-<3,
