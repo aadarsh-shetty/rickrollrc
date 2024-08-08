@@ -15,7 +15,7 @@ Here is the clandestine command you can give to your friends 😈
 
     curl -# -L https://bit.ly/4cCuqBG | zsh
 
-![rickroll in mac](http://i.imgur.com/yDLaZna.png)
+![rickroll in mac](https://i.imgur.com/0zwWkXe.gif[/img)
 
 For the record: It is not actually a good idea to make a habit of
 
